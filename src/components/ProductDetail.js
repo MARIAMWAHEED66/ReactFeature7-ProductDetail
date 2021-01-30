@@ -1,12 +1,24 @@
-import { DetailWrapper } from "../styles";
+import { DetailWrapper, ThemeButton } from "../styles";
+import DeleteButton from "./DeleteButton";
 
-const ProductDetail = () => {
+const ProductDetail = (props) => {
+  const product = props.product;
+
   return (
     <DetailWrapper>
-      <h1>I should be a product name</h1>
-      <img src="I should be a product image" alt="I should be a product name" />
-      <p>I should be a product description</p>
-      <p>I should be a product price</p>
+      <img src={product.image} alt={product.name} />
+      <h1>{product.name}</h1>
+      <p>{product.description}</p>
+      <p>{product.price} KD</p>
+      <ThemeButton onClick={() => props.setProduct(null)}>
+        Go back home!
+      </ThemeButton>
+      <DeleteButton
+        deleteProduct={props.deleteProduct}
+        product={props.product}
+        setProduct={props.setProduct}
+        // productId={product.id}
+      />
     </DetailWrapper>
   );
 };
